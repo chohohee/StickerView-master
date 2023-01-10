@@ -112,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
       @Override
       public void onStickerTouchedDown(@NonNull Sticker sticker) {
-        int totalCount = stickerView.getStickerCount();
-        stickerView.sendToLayer(0, totalCount - 2);
+        Log.d(TAG, "onStickerTouchedDown");
       }
 
       @Override
@@ -227,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
   public void testAdd(View view) {
     final TextSticker sticker = new TextSticker(this);
-    sticker.setText("Hello, world world world world world world world world world world world world!");
+    sticker.setText("Hello, world!");
     sticker.setTextColor(Color.BLUE);
     sticker.setTextAlign(Layout.Alignment.ALIGN_CENTER);
     sticker.resizeText();

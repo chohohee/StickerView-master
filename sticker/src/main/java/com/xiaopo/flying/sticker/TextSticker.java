@@ -62,7 +62,7 @@ public class TextSticker extends Sticker {
   /**
    * Additional line spacing.
    */
-  private float lineSpacingExtra = 10.0f;
+  private float lineSpacingExtra = 0.0f;
 
   public TextSticker(@NonNull Context context) {
     this(context, null);
