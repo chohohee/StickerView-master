@@ -285,18 +285,10 @@ public class StickerView extends FrameLayout {
                 }
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
-                /**
-                 * todo
-                 * zoom in 기준 포인트 여기서 수정해야하는듯?
-                 */
                 oldDistance = calculateDistance(event);
                 oldRotation = calculateRotation(event);
 
                 midPoint = calculateMidPoint(event);
-                /**
-                 * todo
-                 * zoom in 기준 포인트
-                 */
 
                 if (handlingSticker != null && isInStickerArea(handlingSticker, event.getX(1), event.getY(1)) && findCurrentIconTouched() == null) {
                     currentMode = ActionMode.ZOOM_WITH_TWO_FINGER;
@@ -510,10 +502,8 @@ public class StickerView extends FrameLayout {
             midPoint.set(0, 0);
             return midPoint;
         }
-//        float x = (event.getX(0) + event.getX(1)) / 2;
-//        float y = (event.getY(0) + event.getY(1)) / 2;
-        float x = event.getX(0);
-        float y = event.getY(0);
+        float x = (event.getX(0) + event.getX(1)) / 2;
+        float y = (event.getY(0) + event.getY(1)) / 2;
         midPoint.set(x, y);
         return midPoint;
     }
