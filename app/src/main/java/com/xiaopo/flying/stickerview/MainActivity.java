@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
     stickerView.setBackgroundColor(Color.WHITE);
     stickerView.setLocked(false);
-    stickerView.setConstrained(true);
+    stickerView.setConstrained(false);
 
     sticker = new TextSticker(this);
 
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
   private void loadSticker() {
     Drawable drawable =
-            ContextCompat.getDrawable(this, R.drawable.haizewang_215);
+            ContextCompat.getDrawable(this, R.drawable.iu_circle);
     Drawable drawable1 =
             ContextCompat.getDrawable(this, R.drawable.haizewang_23);
     stickerView.addSticker(new DrawableSticker(drawable));
@@ -177,11 +177,9 @@ public class MainActivity extends AppCompatActivity {
     Drawable bubble = ContextCompat.getDrawable(this, R.drawable.bubble);
     stickerView.addSticker(
             new TextSticker(getApplicationContext())
-                    .setDrawable(bubble)
-                    .setText("Sticker\n")
+                    .setText("\uD83D\uDC98")
                     .setMaxTextSize(14)
-                    .resizeText()
-            , Sticker.Position.TOP);
+                    .resizeText());
   }
 
   @Override

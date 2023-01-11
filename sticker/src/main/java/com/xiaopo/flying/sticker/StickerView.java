@@ -37,9 +37,9 @@ import java.util.List;
  */
 public class StickerView extends FrameLayout {
 
-    private final boolean showIcons;
-    private final boolean showBorder;
-    private final boolean bringToFrontCurrentSticker;
+    private final boolean showIcons; // 아이콘 여부
+    private final boolean showBorder; // border line 여부
+    private final boolean bringToFrontCurrentSticker; // 선택한 sticker 전면 노출 할지
 
     @IntDef({ActionMode.NONE, ActionMode.DRAG, ActionMode.ZOOM_WITH_TWO_FINGER, ActionMode.ICON, ActionMode.CLICK})
     @Retention(RetentionPolicy.SOURCE)
@@ -96,8 +96,8 @@ public class StickerView extends FrameLayout {
 
     private Sticker handlingSticker;
 
-    private boolean locked;
-    private boolean constrained;
+    private boolean locked; // lock 상태에서는 스티커 선택 불가능
+    private boolean constrained; // sticker view 외각 넘치기 허용할지
 
     private OnStickerOperationListener onStickerOperationListener;
 

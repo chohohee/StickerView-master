@@ -180,7 +180,12 @@ public abstract class Sticker {
     }
 
     public void getCenterPoint(@NonNull PointF dst) {
-        dst.set(getWidth() * 1f / 2, getHeight() * 1f / 2);
+//        dst.set(getWidth() * 1f / 2, getHeight() * 1f / 2);
+        dst.set(0, 0);
+        /**
+         * todo
+         * 중심 축 기준이 아닌 (0, 0) 기준으로 회전 축 지정
+         */
     }
 
     @NonNull

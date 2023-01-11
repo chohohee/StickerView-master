@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
  * @author wupanjie
  */
 public class BitmapStickerIcon extends DrawableSticker implements StickerIconEvent {
-    public static final float DEFAULT_ICON_RADIUS = 30f;
+    public static final float DEFAULT_ICON_RADIUS = 30f; // 아이콘 반지름 길이
     public static final float DEFAULT_ICON_EXTRA_RADIUS = 10f;
 
     @IntDef({LEFT_TOP, RIGHT_TOP, LEFT_BOTTOM, RIGHT_BOTOM})
