@@ -264,7 +264,18 @@ public class StickerView extends FrameLayout {
                 downX = ev.getX();
                 downY = ev.getY();
 
-                return findCurrentIconTouched() != null || findHandlingSticker() != null;
+//                return findCurrentIconTouched() != null || findHandlingSticker() != null;
+                boolean isTouchSpace = findCurrentIconTouched() != null || findHandlingSticker() != null;
+                if (!isTouchSpace) {
+                    handlingSticker = null;
+                    currentMode = ActionMode.NONE;
+                    invalidate();
+                }
+                return isTouchSpace;
+            /**
+             * todo
+             * 스티커 외각 영역 터치 시 선택 해제
+             */
         }
 
         return super.onInterceptTouchEvent(ev);
@@ -767,7 +778,7 @@ public class StickerView extends FrameLayout {
 
     public void getStickerPoints(@Nullable Sticker sticker, @NonNull float[] dst) {
         if (sticker == null) {
-            Arrays.fill(dst, 0);
+            Arrays.fill(dst, 0); // 배열 초기화
             return;
         }
         sticker.getBoundPoints(bounds);
