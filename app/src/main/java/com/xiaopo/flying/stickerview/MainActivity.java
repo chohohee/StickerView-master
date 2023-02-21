@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.xiaopo.flying.sticker.BitmapStickerIcon;
 import com.xiaopo.flying.sticker.DeleteIconEvent;
 import com.xiaopo.flying.sticker.DrawableSticker;
-import com.xiaopo.flying.sticker.FlipHorizontallyEvent;
 import com.xiaopo.flying.sticker.Sticker;
 import com.xiaopo.flying.sticker.StickerView;
 import com.xiaopo.flying.sticker.TextSticker;
@@ -55,17 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 BitmapStickerIcon.RIGHT_BOTOM);
         zoomIcon.setIconEvent(new ZoomIconEvent());
 
-        BitmapStickerIcon flipIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
-                com.xiaopo.flying.sticker.R.drawable.sticker_ic_flip_white_18dp),
-                BitmapStickerIcon.RIGHT_TOP);
-        flipIcon.setIconEvent(new FlipHorizontallyEvent());
-
-        BitmapStickerIcon heartIcon =
-                new BitmapStickerIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp),
-                        BitmapStickerIcon.LEFT_BOTTOM);
-        heartIcon.setIconEvent(new HelloIconEvent());
-
-        stickerView.setIcons(Arrays.asList(deleteIcon, zoomIcon, flipIcon, heartIcon));
+        stickerView.setIcons(Arrays.asList(deleteIcon, zoomIcon));
 
         //default icon layout
         //stickerView.configDefaultIcons();
@@ -78,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         sticker.setDrawable(ContextCompat.getDrawable(getApplicationContext(),
                 R.drawable.sticker_transparent_background));
-        sticker.setText("Hello, world!");
+        sticker.setText("안녕하세요 안녕하세요 안녕하세요 안녕하세요 \uD83D\uDE35 \uD83D\uDD25 \uD83D\uDC4F \uD83D\uDCAA 안녕하세요 안녕하세요 안녕하세요 안녕하세요 \uD83D\uDE35 \uD83D\uDD25 \uD83D\uDC4F \uD83D\uDCAA");
         sticker.setTextColor(Color.BLACK);
         sticker.setTextAlign(Layout.Alignment.ALIGN_CENTER);
         sticker.resizeText();
@@ -183,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         stickerView.addSticker(
                 new TextSticker(getApplicationContext())
                         .setText("\uD83D\uDC98")
-                        .setMaxTextSize(14)
+                        .setMaxTextSize(20)
                         .resizeText());
     }
 
