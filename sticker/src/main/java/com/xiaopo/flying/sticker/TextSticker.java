@@ -64,10 +64,6 @@ public class TextSticker extends Sticker {
      */
     private float lineSpacingExtra = 0.0f;
 
-    public TextSticker(@NonNull Context context) {
-        this(context, null);
-    }
-
     public TextSticker(@NonNull Context context, @Nullable Drawable drawable) {
         this.context = context;
         this.drawable = drawable;
