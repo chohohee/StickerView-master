@@ -17,12 +17,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.xiaopo.flying.sticker.BitmapStickerIcon;
-import com.xiaopo.flying.sticker.DeleteIconEvent;
+import com.xiaopo.flying.sticker.icon.DeleteIconEvent;
 import com.xiaopo.flying.sticker.DrawableSticker;
 import com.xiaopo.flying.sticker.Sticker;
 import com.xiaopo.flying.sticker.StickerView;
 import com.xiaopo.flying.sticker.TextSticker;
-import com.xiaopo.flying.sticker.ZoomIconEvent;
+import com.xiaopo.flying.sticker.icon.ZoomIconEvent;
 import com.xiaopo.flying.stickerview.util.FileUtil;
 
 import java.io.File;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //currently you can config your own icons and icon event
         //the event you can custom
         BitmapStickerIcon deleteIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
-                com.xiaopo.flying.sticker.R.drawable.sticker_ic_close_white_18dp),
+                R.drawable.blip_img_thumbnail_close),
                 BitmapStickerIcon.LEFT_TOP);
         deleteIcon.setIconEvent(new DeleteIconEvent());
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         stickerView.setLocked(false);
         stickerView.setConstrained(false);
 
-        sticker = new TextSticker(this);
+        sticker = new TextSticker(this, ContextCompat.getDrawable(this, R.drawable.sticker_transparent_background));
 
         sticker.setDrawable(ContextCompat.getDrawable(getApplicationContext(),
                 R.drawable.sticker_transparent_background));
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         Drawable bubble = ContextCompat.getDrawable(this, R.drawable.bubble);
         stickerView.addSticker(
-                new TextSticker(getApplicationContext())
+                new TextSticker(getApplicationContext(), ContextCompat.getDrawable(this, R.drawable.sticker_transparent_background))
                         .setText("\uD83D\uDC98")
                         .setMaxTextSize(20)
                         .resizeText());
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void testAdd(View view) {
-        final TextSticker sticker = new TextSticker(this);
+        final TextSticker sticker = new TextSticker(this, ContextCompat.getDrawable(this, R.drawable.sticker_transparent_background));
         sticker.setText("Hello, world!");
         sticker.setTextColor(Color.BLUE);
         sticker.setTextAlign(Layout.Alignment.ALIGN_CENTER);

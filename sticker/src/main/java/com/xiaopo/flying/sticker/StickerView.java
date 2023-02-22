@@ -22,6 +22,9 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 
+import com.xiaopo.flying.sticker.icon.DeleteIconEvent;
+import com.xiaopo.flying.sticker.icon.ZoomIconEvent;
+
 import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -51,17 +54,9 @@ public class StickerView extends FrameLayout {
         int CLICK = 4;
     }
 
-    @IntDef(flag = true, value = {FLIP_HORIZONTALLY, FLIP_VERTICALLY})
-    @Retention(RetentionPolicy.SOURCE)
-    protected @interface Flip {
-    }
-
     private static final String TAG = "StickerView";
 
     private static final int DEFAULT_MIN_CLICK_DELAY_TIME = 200;
-
-    public static final int FLIP_HORIZONTALLY = 1;
-    public static final int FLIP_VERTICALLY = 1 << 1;
 
     private final List<Sticker> stickers = new ArrayList<>();
     private final List<BitmapStickerIcon> icons = new ArrayList<>(4);
@@ -237,7 +232,7 @@ public class StickerView extends FrameLayout {
                             configIconMatrix(icon, x4, y4, rotation);
                             break;
                     }
-                    icon.draw(canvas, borderPaint);
+                    icon.draw(canvas);
                 }
             }
         }
@@ -477,9 +472,9 @@ public class StickerView extends FrameLayout {
             float x = icon.getX() - downX;
             float y = icon.getY() - downY;
             float distance_pow_2 = x * x + y * y;
-            if (distance_pow_2 <= Math.pow(icon.getIconRadius() + icon.getIconRadius(), 2)) {
+//            if (distance_pow_2 <= Math.pow(icon.getIconRadius() + icon.getIconRadius(), 2)) {
                 return icon;
-            }
+//            }
         }
 
         return null;
@@ -611,30 +606,6 @@ public class StickerView extends FrameLayout {
         invalidate();
     }
 
-    public void flipCurrentSticker(int direction) {
-        flip(handlingSticker, direction);
-    }
-
-    public void flip(@Nullable Sticker sticker, @Flip int direction) {
-        if (sticker != null) {
-            sticker.getCenterPoint(midPoint);
-            if ((direction & FLIP_HORIZONTALLY) > 0) {
-                sticker.getMatrix().preScale(-1, 1, midPoint.x, midPoint.y);
-                sticker.setFlippedHorizontally(!sticker.isFlippedHorizontally());
-            }
-            if ((direction & FLIP_VERTICALLY) > 0) {
-                sticker.getMatrix().preScale(1, -1, midPoint.x, midPoint.y);
-                sticker.setFlippedVertically(!sticker.isFlippedVertically());
-            }
-
-            if (onStickerOperationListener != null) {
-                onStickerOperationListener.onStickerFlipped(sticker);
-            }
-
-            invalidate();
-        }
-    }
-
     public boolean replace(@Nullable Sticker sticker) {
         return replace(sticker, true);
     }
@@ -645,8 +616,6 @@ public class StickerView extends FrameLayout {
             float height = getHeight();
             if (needStayState) {
                 sticker.setMatrix(handlingSticker.getMatrix());
-                sticker.setFlippedVertically(handlingSticker.isFlippedVertically());
-                sticker.setFlippedHorizontally(handlingSticker.isFlippedHorizontally());
             } else {
                 handlingSticker.getMatrix().reset();
                 // reset scale, angle, and put it in center

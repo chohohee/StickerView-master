@@ -35,28 +35,6 @@ public abstract class Sticker {
     private final float[] mappedBounds = new float[8];
     private final RectF trappedRect = new RectF();
     private final Matrix matrix = new Matrix();
-    private boolean isFlippedHorizontally;
-    private boolean isFlippedVertically;
-
-    public boolean isFlippedHorizontally() {
-        return isFlippedHorizontally;
-    }
-
-    @NonNull
-    public Sticker setFlippedHorizontally(boolean flippedHorizontally) {
-        isFlippedHorizontally = flippedHorizontally;
-        return this;
-    }
-
-    public boolean isFlippedVertically() {
-        return isFlippedVertically;
-    }
-
-    @NonNull
-    public Sticker setFlippedVertically(boolean flippedVertically) {
-        isFlippedVertically = flippedVertically;
-        return this;
-    }
 
     @NonNull
     public Matrix getMatrix() {
@@ -89,47 +67,14 @@ public abstract class Sticker {
     }
 
     public void getBoundPoints(@NonNull float[] points) {
-        if (!isFlippedHorizontally) {
-            if (!isFlippedVertically) {
-                points[0] = 0f;
-                points[1] = 0f;
-                points[2] = getWidth();
-                points[3] = 0f;
-                points[4] = 0f;
-                points[5] = getHeight();
-                points[6] = getWidth();
-                points[7] = getHeight();
-            } else {
-                points[0] = 0f;
-                points[1] = getHeight();
-                points[2] = getWidth();
-                points[3] = getHeight();
-                points[4] = 0f;
-                points[5] = 0f;
-                points[6] = getWidth();
-                points[7] = 0f;
-            }
-        } else {
-            if (!isFlippedVertically) {
-                points[0] = getWidth();
-                points[1] = 0f;
-                points[2] = 0f;
-                points[3] = 0f;
-                points[4] = getWidth();
-                points[5] = getHeight();
-                points[6] = 0f;
-                points[7] = getHeight();
-            } else {
-                points[0] = getWidth();
-                points[1] = getHeight();
-                points[2] = 0f;
-                points[3] = getHeight();
-                points[4] = getWidth();
-                points[5] = 0f;
-                points[6] = 0f;
-                points[7] = 0f;
-            }
-        }
+        points[0] = 0f;
+        points[1] = 0f;
+        points[2] = getWidth();
+        points[3] = 0f;
+        points[4] = 0f;
+        points[5] = getHeight();
+        points[6] = getWidth();
+        points[7] = getHeight();
     }
 
     @NonNull
