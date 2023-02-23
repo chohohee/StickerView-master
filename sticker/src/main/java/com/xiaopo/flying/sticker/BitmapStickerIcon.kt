@@ -1,7 +1,6 @@
 package com.xiaopo.flying.sticker
 
 import android.graphics.Canvas
-import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.support.annotation.IntDef
 import android.view.MotionEvent
@@ -19,6 +18,7 @@ class BitmapStickerIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableSt
     @Retention(RetentionPolicy.SOURCE)
     annotation class Gravity
 
+    private val iconRadius: Float = DEFAULT_ICON_RADIUS
     var x = 0f
     var y = 0f
 
@@ -33,6 +33,10 @@ class BitmapStickerIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableSt
 
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
+    }
+
+    fun getIconRadius(): Float {
+        return iconRadius
     }
 
     override fun onActionDown(stickerView: StickerView, event: MotionEvent) {
@@ -54,6 +58,8 @@ class BitmapStickerIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableSt
     }
 
     companion object {
+        const val DEFAULT_ICON_RADIUS = 30f // 아이콘 반지름 길이
+
         const val LEFT_TOP = 0
         const val RIGHT_TOP = 1
         const val LEFT_BOTTOM = 2

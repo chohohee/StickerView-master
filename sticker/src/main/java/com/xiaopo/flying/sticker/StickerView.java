@@ -472,9 +472,9 @@ public class StickerView extends FrameLayout {
             float x = icon.getX() - downX;
             float y = icon.getY() - downY;
             float distance_pow_2 = x * x + y * y;
-//            if (distance_pow_2 <= Math.pow(icon.getIconRadius() + icon.getIconRadius(), 2)) {
+            if (distance_pow_2 <= Math.pow(icon.getIconRadius() + icon.getIconRadius(), 2)) {
                 return icon;
-//            }
+            }
         }
 
         return null;
