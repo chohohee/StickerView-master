@@ -24,6 +24,8 @@ import android.widget.FrameLayout;
 
 import com.xiaopo.flying.sticker.icon.DeleteIconEvent;
 import com.xiaopo.flying.sticker.icon.ZoomIconEvent;
+import com.xiaopo.flying.sticker.sticker.BitmapStickerIcon;
+import com.xiaopo.flying.sticker.sticker.Sticker;
 
 import java.io.File;
 import java.lang.annotation.Retention;
@@ -132,7 +134,7 @@ public class StickerView extends FrameLayout {
     public void configDefaultIcons() {
         BitmapStickerIcon deleteIcon = new BitmapStickerIcon(ContextCompat.getDrawable(getContext(), R.drawable.sticker_ic_close_white_18dp), BitmapStickerIcon.LEFT_TOP);
         deleteIcon.setIconEvent(new DeleteIconEvent());
-        BitmapStickerIcon zoomIcon = new BitmapStickerIcon(ContextCompat.getDrawable(getContext(), R.drawable.sticker_ic_scale_white_18dp), BitmapStickerIcon.RIGHT_BOTOM);
+        BitmapStickerIcon zoomIcon = new BitmapStickerIcon(ContextCompat.getDrawable(getContext(), R.drawable.sticker_ic_scale_white_18dp), BitmapStickerIcon.RIGHT_BOTTOM);
         zoomIcon.setIconEvent(new ZoomIconEvent());
 
         icons.clear();
@@ -228,11 +230,11 @@ public class StickerView extends FrameLayout {
                             configIconMatrix(icon, x3, y3, rotation);
                             break;
 
-                        case BitmapStickerIcon.RIGHT_BOTOM:
+                        case BitmapStickerIcon.RIGHT_BOTTOM:
                             configIconMatrix(icon, x4, y4, rotation);
                             break;
                     }
-                    icon.draw(canvas);
+                    icon.draw(canvas, borderPaint);
                 }
             }
         }
@@ -439,6 +441,35 @@ public class StickerView extends FrameLayout {
             moveMatrix.postRotate(newRotation - oldRotation, midPoint.x, midPoint.y);
             handlingSticker.setMatrix(moveMatrix);
         }
+        /**
+         * todo
+         * 최대 스케일 제한 작업 중
+         * getCurrentScale: 원본 대비 스케일인데 최대 2배 or 3배로 제한할지
+         * 최소는 몇 배로 제한할지 정의 필요
+         *
+         * constrainSticker() 함수 참고해서 개선
+         */
+//        if (sticker != null) {
+//            float newDistance = calculateDistance(midPoint.x, midPoint.y, event.getX(), event.getY());
+//            float newRotation = calculateRotation(midPoint.x, midPoint.y, event.getX(), event.getY());
+//
+//            float sx = newDistance / oldDistance;
+//            float sy = newDistance / oldDistance;
+//            if (sx > 2) {
+//                sx = 2;
+//                sy = 2;
+//            }
+//            Log.e("test", "sx: " + sx + ", sy: " + sy);
+//
+//            Log.e("test", "handlingSticker.getCurrentScale(): " + handlingSticker.getCurrentScale());
+//
+//            moveMatrix.set(downMatrix);
+//            moveMatrix.postScale(sx, sy, midPoint.x, midPoint.y);
+//            moveMatrix.postRotate(newRotation - oldRotation, midPoint.x, midPoint.y);
+//            handlingSticker.setMatrix(moveMatrix);
+//
+//            Log.e("test", "handlingSticker.getCurrentScale(): " + handlingSticker.getCurrentScale());
+//        }
     }
 
     protected void constrainSticker(@NonNull Sticker sticker) {
