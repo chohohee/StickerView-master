@@ -1,4 +1,4 @@
-package com.xiaopo.flying.sticker
+package com.xiaopo.flying.sticker.sticker
 
 import android.graphics.Canvas
 import android.graphics.Rect

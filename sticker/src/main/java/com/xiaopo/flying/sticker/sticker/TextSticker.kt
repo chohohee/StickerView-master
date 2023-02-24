@@ -1,15 +1,13 @@
-package com.xiaopo.flying.sticker
+package com.xiaopo.flying.sticker.sticker
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import com.xiaopo.flying.sticker.Sticker
 import android.text.TextPaint
 import android.text.StaticLayout
 import android.support.v4.content.ContextCompat
 import com.xiaopo.flying.sticker.R
-import com.xiaopo.flying.sticker.TextSticker
 import android.graphics.Typeface
 import android.support.annotation.ColorInt
 import android.support.annotation.Dimension

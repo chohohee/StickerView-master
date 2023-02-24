@@ -16,12 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.xiaopo.flying.sticker.BitmapStickerIcon;
+import com.xiaopo.flying.sticker.sticker.BitmapStickerIcon;
 import com.xiaopo.flying.sticker.icon.DeleteIconEvent;
-import com.xiaopo.flying.sticker.DrawableSticker;
-import com.xiaopo.flying.sticker.Sticker;
+import com.xiaopo.flying.sticker.sticker.DrawableSticker;
+import com.xiaopo.flying.sticker.sticker.Sticker;
 import com.xiaopo.flying.sticker.StickerView;
-import com.xiaopo.flying.sticker.TextSticker;
+import com.xiaopo.flying.sticker.sticker.TextSticker;
 import com.xiaopo.flying.sticker.icon.ZoomIconEvent;
 import com.xiaopo.flying.stickerview.util.FileUtil;
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         BitmapStickerIcon zoomIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
                 com.xiaopo.flying.sticker.R.drawable.sticker_ic_scale_white_18dp),
-                BitmapStickerIcon.RIGHT_BOTOM);
+                BitmapStickerIcon.RIGHT_BOTTOM);
         zoomIcon.setIconEvent(new ZoomIconEvent());
 
         stickerView.setIcons(Arrays.asList(deleteIcon, zoomIcon));
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         stickerView.setBackgroundColor(Color.WHITE);
         stickerView.setLocked(false);
-        stickerView.setConstrained(false);
+        stickerView.setConstrained(true);
 
         sticker = new TextSticker(this, ContextCompat.getDrawable(this, R.drawable.sticker_transparent_background));
 
@@ -163,9 +163,8 @@ public class MainActivity extends AppCompatActivity {
         stickerView.addSticker(new DrawableSticker(drawable));
         stickerView.addSticker(new DrawableSticker(drawable1), Sticker.Position.BOTTOM | Sticker.Position.RIGHT);
 
-        Drawable drawable3 =
-                ContextCompat.getDrawable(this, R.drawable.iu_red);
-        stickerView.addSticker(new DrawableSticker(drawable3), Sticker.Position.BOTTOM | Sticker.Position.LEFT);
+        Drawable drawable3 = ContextCompat.getDrawable(this, R.drawable.iu_5760);
+        stickerView.addSticker(new DrawableSticker(drawable3));
 
 
         Drawable bubble = ContextCompat.getDrawable(this, R.drawable.bubble);

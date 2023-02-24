@@ -1,21 +1,18 @@
-package com.xiaopo.flying.sticker
+package com.xiaopo.flying.sticker.sticker
 
 import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.support.annotation.IntDef
 import android.view.MotionEvent
+import com.xiaopo.flying.sticker.StickerView
 import com.xiaopo.flying.sticker.icon.StickerIconEvent
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
 
-/**
- * @author wupanjie
- */
-class BitmapStickerIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableSticker(
-    drawable!!
-), StickerIconEvent {
-    @IntDef(LEFT_TOP, RIGHT_TOP, LEFT_BOTTOM, RIGHT_BOTOM)
-    @Retention(RetentionPolicy.SOURCE)
+class BitmapStickerIcon(drawable: Drawable, @Gravity gravity: Int) : DrawableSticker(drawable),
+    StickerIconEvent {
+
+    @IntDef(LEFT_TOP, RIGHT_TOP, LEFT_BOTTOM, RIGHT_BOTTOM)
+    @Retention(AnnotationRetention.SOURCE)
     annotation class Gravity
 
     private val iconRadius: Float = DEFAULT_ICON_RADIUS
@@ -31,7 +28,8 @@ class BitmapStickerIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableSt
         position = gravity
     }
 
-    override fun draw(canvas: Canvas) {
+    fun draw(canvas: Canvas, paint: Paint?) {
+        canvas.drawCircle(x, y, iconRadius, paint!!)
         super.draw(canvas)
     }
 
@@ -63,6 +61,6 @@ class BitmapStickerIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableSt
         const val LEFT_TOP = 0
         const val RIGHT_TOP = 1
         const val LEFT_BOTTOM = 2
-        const val RIGHT_BOTOM = 3
+        const val RIGHT_BOTTOM = 3
     }
 }
