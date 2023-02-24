@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         sticker.setDrawable(ContextCompat.getDrawable(getApplicationContext(),
                 R.drawable.sticker_transparent_background));
         sticker.setText("안녕하세요 안녕하세요 안녕하세요 안녕하세요 \uD83D\uDE35 \uD83D\uDD25 \uD83D\uDC4F \uD83D\uDCAA 안녕하세요 안녕하세요 안녕하세요 안녕하세요 \uD83D\uDE35 \uD83D\uDD25 \uD83D\uDC4F \uD83D\uDCAA");
-        sticker.setTextColor(Color.BLACK);
+        sticker.setTextColor(Color.WHITE);
         sticker.setTextAlign(Layout.Alignment.ALIGN_CENTER);
         sticker.resizeText();
 
@@ -165,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
 
         Drawable drawable3 = ContextCompat.getDrawable(this, R.drawable.iu_5760);
         stickerView.addSticker(new DrawableSticker(drawable3));
-
 
         Drawable bubble = ContextCompat.getDrawable(this, R.drawable.bubble);
         stickerView.addSticker(
