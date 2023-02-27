@@ -44,17 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
         //currently you can config your own icons and icon event
         //the event you can custom
-        BitmapStickerIcon deleteIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
-                R.drawable.blip_img_thumbnail_close),
-                BitmapStickerIcon.LEFT_TOP);
-        deleteIcon.setIconEvent(new DeleteIconEvent());
+//        BitmapStickerIcon deleteIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
+//                R.drawable.blip_img_thumbnail_close),
+//                BitmapStickerIcon.LEFT_TOP);
+//        deleteIcon.setIconEvent(new DeleteIconEvent());
+//
+//        BitmapStickerIcon zoomIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
+//                com.xiaopo.flying.sticker.R.drawable.sticker_ic_scale_white_18dp),
+//                BitmapStickerIcon.RIGHT_BOTTOM);
+//        zoomIcon.setIconEvent(new ZoomIconEvent());
 
-        BitmapStickerIcon zoomIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
-                com.xiaopo.flying.sticker.R.drawable.sticker_ic_scale_white_18dp),
-                BitmapStickerIcon.RIGHT_BOTTOM);
-        zoomIcon.setIconEvent(new ZoomIconEvent());
-
-        stickerView.setIcons(Arrays.asList(deleteIcon, zoomIcon));
+//        stickerView.setIcons(Arrays.asList(deleteIcon, zoomIcon));
 
         //default icon layout
         //stickerView.configDefaultIcons();
@@ -108,16 +108,6 @@ public class MainActivity extends AppCompatActivity {
             public void onStickerZoomFinished(@NonNull Sticker sticker) {
                 Log.d(TAG, "onStickerZoomFinished");
             }
-
-            @Override
-            public void onStickerFlipped(@NonNull Sticker sticker) {
-                Log.d(TAG, "onStickerFlipped");
-            }
-
-            @Override
-            public void onStickerDoubleTapped(@NonNull Sticker sticker) {
-                Log.d(TAG, "onDoubleTapped: double tap will be with two click");
-            }
         });
 
         if (toolbar != null) {
@@ -156,12 +146,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadSticker() {
-        Drawable drawable =
-                ContextCompat.getDrawable(this, R.drawable.iu_circle);
-        Drawable drawable1 =
-                ContextCompat.getDrawable(this, R.drawable.iu_happy);
-        stickerView.addSticker(new DrawableSticker(drawable));
-        stickerView.addSticker(new DrawableSticker(drawable1), Sticker.Position.BOTTOM | Sticker.Position.RIGHT);
+//        Drawable drawable =
+//                ContextCompat.getDrawable(this, R.drawable.iu_circle);
+//        Drawable drawable1 =
+//                ContextCompat.getDrawable(this, R.drawable.iu_happy);
+//        stickerView.addSticker(new DrawableSticker(drawable));
+//        stickerView.addSticker(new DrawableSticker(drawable1), Sticker.Position.BOTTOM | Sticker.Position.RIGHT);
 
         Drawable drawable3 = ContextCompat.getDrawable(this, R.drawable.iu_5760);
         stickerView.addSticker(new DrawableSticker(drawable3));

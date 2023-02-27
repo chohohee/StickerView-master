@@ -173,7 +173,8 @@ public abstract class Sticker {
      * @return - current image rotation angle.
      */
     public float getCurrentAngle() {
-        return getMatrixAngle(matrix);
+        float angle = getMatrixAngle(matrix);
+        return angle;
     }
 
     /**
@@ -185,7 +186,8 @@ public abstract class Sticker {
 
     public float getMatrixValue(@NonNull Matrix matrix, @IntRange(from = 0, to = 9) int valueIndex) {
         matrix.getValues(matrixValues);
-        return matrixValues[valueIndex];
+        float value = matrixValues[valueIndex];
+        return value;
     }
 
     public boolean contains(float x, float y) {
