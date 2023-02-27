@@ -16,17 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.xiaopo.flying.sticker.sticker.BitmapStickerIcon;
-import com.xiaopo.flying.sticker.icon.DeleteIconEvent;
+import com.xiaopo.flying.sticker.StickerView;
 import com.xiaopo.flying.sticker.sticker.DrawableSticker;
 import com.xiaopo.flying.sticker.sticker.Sticker;
-import com.xiaopo.flying.sticker.StickerView;
 import com.xiaopo.flying.sticker.sticker.TextSticker;
-import com.xiaopo.flying.sticker.icon.ZoomIconEvent;
 import com.xiaopo.flying.stickerview.util.FileUtil;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
