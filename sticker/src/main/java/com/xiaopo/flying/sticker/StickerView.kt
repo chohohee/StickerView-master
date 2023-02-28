@@ -562,6 +562,23 @@ class StickerView @JvmOverloads constructor(
         invalidate()
     }
 
+    /**
+     * todo
+     * get set 테스트
+     * 스티커 보존 가능할지
+     *
+     */
+    fun getSticker(): Sticker? {
+        return currentSticker
+    }
+
+    fun setSticker(sticker: Sticker?) {
+        sticker?.let {
+            stickers.add(sticker)
+        }
+        invalidate()
+    }
+
     fun addSticker(sticker: Sticker): StickerView {
         return addSticker(sticker, Sticker.Position.CENTER)
     }

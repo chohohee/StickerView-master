@@ -61,14 +61,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="testRemove"
+                android:onClick="setSticker"
                 android:text="Remove" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="testRemoveAll"
+                android:onClick="getSticker"
                 android:text="RemoveAll" />
 
             <Button

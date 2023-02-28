@@ -3,6 +3,7 @@ package com.xiaopo.flying.stickerview;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -38,28 +39,10 @@ public class MainActivity extends AppCompatActivity {
         stickerView = (StickerView) findViewById(R.id.sticker_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        //currently you can config your own icons and icon event
-        //the event you can custom
-//        BitmapStickerIcon deleteIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
-//                R.drawable.blip_img_thumbnail_close),
-//                BitmapStickerIcon.LEFT_TOP);
-//        deleteIcon.setIconEvent(new DeleteIconEvent());
-//
-//        BitmapStickerIcon zoomIcon = new BitmapStickerIcon(ContextCompat.getDrawable(this,
-//                com.xiaopo.flying.sticker.R.drawable.sticker_ic_scale_white_18dp),
-//                BitmapStickerIcon.RIGHT_BOTTOM);
-//        zoomIcon.setIconEvent(new ZoomIconEvent());
-
-//        stickerView.setIcons(Arrays.asList(deleteIcon, zoomIcon));
-
-        //default icon layout
-        //stickerView.configDefaultIcons();
-
         stickerView.setBackgroundColor(Color.WHITE);
         stickerView.setLocked(false);
 
         sticker = new TextSticker(this, ContextCompat.getDrawable(this, R.drawable.sticker_transparent_background));
-
         sticker.setDrawable(ContextCompat.getDrawable(getApplicationContext(),
                 R.drawable.sticker_transparent_background));
         sticker.setText("안녕하세요 안녕하세요 안녕하세요 안녕하세요 \uD83D\uDE35 \uD83D\uDD25 \uD83D\uDC4F \uD83D\uDCAA 안녕하세요 안녕하세요 안녕하세요 안녕하세요 \uD83D\uDE35 \uD83D\uDD25 \uD83D\uDC4F \uD83D\uDCAA");
@@ -75,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStickerClicked(@NonNull Sticker sticker) {
-                //stickerView.removeAllSticker();
                 if (sticker instanceof TextSticker) {
                     ((TextSticker) sticker).setTextColor(Color.RED);
                     stickerView.replace(sticker);
@@ -121,9 +103,6 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "the file is null", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    //                    stickerView.replace(new DrawableSticker(
-                    //                            ContextCompat.getDrawable(MainActivity.this, R.drawable.haizewang_90)
-                    //                    ));
                     return false;
                 }
             });
@@ -188,6 +167,31 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Remove current Sticker failed!", Toast.LENGTH_SHORT)
                     .show();
         }
+    }
+
+    /**
+     * todo
+     * get set 테스트
+     * 스티커 보존 가능할지
+     *
+     */
+    private Sticker tmpSticker = null;
+
+    public void getSticker(View view) {
+        if (tmpSticker != null) {
+            Matrix matrix = tmpSticker.getMatrix();
+            float scale = tmpSticker.getCurrentScale();
+            float matrixScale = tmpSticker.getMatrixScale(matrix);
+            float angle = tmpSticker.getCurrentAngle();
+            int a = 2;
+            int b = a;
+        }
+
+        tmpSticker = stickerView.getSticker();
+    }
+
+    public void setSticker(View view) {
+        stickerView.setSticker(tmpSticker);
     }
 
     public void testRemoveAll(View view) {
