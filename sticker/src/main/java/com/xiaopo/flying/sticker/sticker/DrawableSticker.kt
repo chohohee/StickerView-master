@@ -5,9 +5,6 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.support.annotation.IntRange
 
-/**
- * @author wupanjie
- */
 open class DrawableSticker(private var drawable: Drawable) : Sticker() {
     private val realBounds: Rect
 
@@ -15,13 +12,10 @@ open class DrawableSticker(private var drawable: Drawable) : Sticker() {
         realBounds = Rect(0, 0, width, height)
     }
 
-    override fun getDrawable(): Drawable {
-        return drawable
-    }
+    override fun getDrawable(): Drawable = drawable
 
-    override fun setDrawable(textDrawable: Drawable): DrawableSticker {
+    override fun setDrawable(textDrawable: Drawable) {
         this.drawable = textDrawable
-        return this
     }
 
     override fun draw(canvas: Canvas) {
@@ -32,27 +26,7 @@ open class DrawableSticker(private var drawable: Drawable) : Sticker() {
         canvas.restore()
     }
 
-    override fun setAlpha(@IntRange(from = 0, to = 255) alpha: Int): DrawableSticker {
-        drawable.alpha = alpha
-        return this
-    }
+    override fun getWidth(): Int = drawable.intrinsicWidth
 
-    override fun getWidth(): Int {
-        return drawable.intrinsicWidth
-    }
-
-    override fun getHeight(): Int {
-        return drawable.intrinsicHeight
-    }
-
-    override fun release() {
-        super.release()
-        /**
-         * todo
-         * null 처리 주석
-         */
-//        if (drawable != null) {
-//            drawable = null
-//        }
-    }
+    override fun getHeight(): Int = drawable.intrinsicHeight
 }

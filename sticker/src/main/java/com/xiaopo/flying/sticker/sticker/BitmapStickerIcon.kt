@@ -8,7 +8,7 @@ import android.view.MotionEvent
 import com.xiaopo.flying.sticker.StickerView
 import com.xiaopo.flying.sticker.icon.StickerIconEvent
 
-class BitmapStickerIcon(drawable: Drawable, @Gravity gravity: Int) : DrawableSticker(drawable),
+class  BitmapStickerIcon(drawable: Drawable, @Gravity gravity: Int) : DrawableSticker(drawable),
     StickerIconEvent {
 
     @IntDef(LEFT_TOP, RIGHT_TOP, LEFT_BOTTOM, RIGHT_BOTTOM)
@@ -33,30 +33,22 @@ class BitmapStickerIcon(drawable: Drawable, @Gravity gravity: Int) : DrawableSti
         super.draw(canvas)
     }
 
-    fun getIconRadius(): Float {
-        return iconRadius
-    }
+    fun getIconRadius(): Float = iconRadius
 
     override fun onActionDown(stickerView: StickerView, event: MotionEvent) {
-        if (iconEvent != null) {
-            iconEvent!!.onActionDown(stickerView, event)
-        }
+        iconEvent?.onActionDown(stickerView, event)
     }
 
     override fun onActionMove(stickerView: StickerView, event: MotionEvent) {
-        if (iconEvent != null) {
-            iconEvent!!.onActionMove(stickerView, event)
-        }
+        iconEvent?.onActionMove(stickerView, event)
     }
 
     override fun onActionUp(stickerView: StickerView, event: MotionEvent) {
-        if (iconEvent != null) {
-            iconEvent!!.onActionUp(stickerView, event)
-        }
+        iconEvent?.onActionUp(stickerView, event)
     }
 
     companion object {
-        const val DEFAULT_ICON_RADIUS = 30f // 아이콘 반지름 길이
+        const val DEFAULT_ICON_RADIUS = 30f // 아이콘 반지름
 
         const val LEFT_TOP = 0
         const val RIGHT_TOP = 1

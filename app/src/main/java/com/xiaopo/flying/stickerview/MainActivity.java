@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         stickerView.setBackgroundColor(Color.WHITE);
         stickerView.setLocked(false);
-        stickerView.setConstrained(true);
 
         sticker = new TextSticker(this, ContextCompat.getDrawable(this, R.drawable.sticker_transparent_background));
 

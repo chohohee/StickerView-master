@@ -97,39 +97,16 @@ class TextSticker(private val context: Context, drawable: Drawable?) : Sticker()
         canvas.restore()
     }
 
-    override fun getWidth(): Int {
-        return drawable.intrinsicWidth
-    }
+    override fun getWidth(): Int = drawable.intrinsicWidth
 
-    override fun getHeight(): Int {
-        return drawable.intrinsicHeight
-    }
+    override fun getHeight(): Int = drawable.intrinsicHeight
 
-    override fun release() {
-        super.release()
-        /**
-         * todo
-         * null 처리
-         */
-//        if (drawable != null) {
-//            drawable = null
-//        }
-    }
+    override fun getDrawable(): Drawable = drawable
 
-    override fun setAlpha(@IntRange(from = 0, to = 255) alpha: Int): TextSticker {
-        textPaint.alpha = alpha
-        return this
-    }
-
-    override fun getDrawable(): Drawable {
-        return drawable
-    }
-
-    override fun setDrawable(drawable: Drawable): TextSticker {
+    override fun setDrawable(drawable: Drawable) {
         this.drawable = drawable
         realBounds[0, 0, width] = height
         textRect[0, 0, width] = height
-        return this
     }
 
     fun setDrawable(drawable: Drawable, region: Rect?): TextSticker {

@@ -15,9 +15,6 @@ import com.xiaopo.flying.sticker.StickerUtils;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/**
- * @author wupanjie
- */
 public abstract class Sticker {
 
     @IntDef(flag = true, value = {Position.CENTER, Position.TOP, Position.BOTTOM, Position.LEFT, Position.RIGHT})
@@ -54,19 +51,10 @@ public abstract class Sticker {
 
     public abstract int getHeight();
 
-    public abstract Sticker setDrawable(@NonNull Drawable drawable);
+    public abstract void setDrawable(@NonNull Drawable drawable);
 
     @NonNull
     public abstract Drawable getDrawable();
-
-    @NonNull
-    public abstract Sticker setAlpha(@IntRange(from = 0, to = 255) int alpha);
-
-    public float[] getBoundPoints() {
-        float[] points = new float[8];
-        getBoundPoints(points);
-        return points;
-    }
 
     public void getBoundPoints(@NonNull float[] points) {
         points[0] = 0f;
@@ -79,67 +67,13 @@ public abstract class Sticker {
         points[7] = getHeight();
     }
 
-    @NonNull
-    public float[] getMappedBoundPoints() {
-        float[] dst = new float[8];
-        getMappedPoints(dst, getBoundPoints());
-        return dst;
-    }
-
-    @NonNull
-    public float[] getMappedPoints(@NonNull float[] src) {
-        float[] dst = new float[src.length];
-        matrix.mapPoints(dst, src);
-        return dst;
-    }
-
     public void getMappedPoints(@NonNull float[] dst, @NonNull float[] src) {
         matrix.mapPoints(dst, src);
     }
 
-    @NonNull
-    public RectF getBound() {
-        RectF bound = new RectF();
-        getBound(bound);
-        return bound;
-    }
-
-    public void getBound(@NonNull RectF dst) {
-        dst.set(0, 0, getWidth(), getHeight());
-    }
-
-    @NonNull
-    public RectF getMappedBound() {
-        RectF dst = new RectF();
-        getMappedBound(dst, getBound());
-        return dst;
-    }
-
-    public void getMappedBound(@NonNull RectF dst, @NonNull RectF bound) {
-        matrix.mapRect(dst, bound);
-    }
-
-    @NonNull
-    public PointF getCenterPoint() {
-        PointF center = new PointF();
-        getCenterPoint(center);
-        return center;
-    }
-
-    public void getCenterPoint(@NonNull PointF dst) {
+    public void getCenterPoint(@NonNull PointF dst) { // 중심 축 기준이 아닌 (0, 0) 기준으로 회전 축 지정
 //        dst.set(getWidth() * 1f / 2, getHeight() * 1f / 2);
         dst.set(0, 0);
-        /**
-         * todo
-         * 중심 축 기준이 아닌 (0, 0) 기준으로 회전 축 지정
-         */
-    }
-
-    @NonNull
-    public PointF getMappedCenterPoint() {
-        PointF pointF = getCenterPoint();
-        getMappedCenterPoint(pointF, new float[2], new float[2]);
-        return pointF;
     }
 
     public void getMappedCenterPoint(@NonNull PointF dst, @NonNull float[] mappedPoints, @NonNull float[] src) {
@@ -173,8 +107,7 @@ public abstract class Sticker {
      * @return - current image rotation angle.
      */
     public float getCurrentAngle() {
-        float angle = getMatrixAngle(matrix);
-        return angle;
+        return getMatrixAngle(matrix);
     }
 
     /**
@@ -190,10 +123,6 @@ public abstract class Sticker {
         return value;
     }
 
-    public boolean contains(float x, float y) {
-        return contains(new float[]{x, y});
-    }
-
     public boolean contains(@NonNull float[] point) {
         Matrix tempMatrix = new Matrix();
         tempMatrix.setRotate(-getCurrentAngle());
@@ -203,8 +132,5 @@ public abstract class Sticker {
         tempMatrix.mapPoints(unrotatedPoint, point);
         StickerUtils.trapToRect(trappedRect, unrotatedWrapperCorner);
         return trappedRect.contains(unrotatedPoint[0], unrotatedPoint[1]);
-    }
-
-    public void release() {
     }
 }

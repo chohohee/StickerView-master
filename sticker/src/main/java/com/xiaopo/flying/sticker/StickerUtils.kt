@@ -2,7 +2,6 @@ package com.xiaopo.flying.sticker
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.xiaopo.flying.sticker.StickerUtils
 import android.provider.MediaStore
 import android.content.Intent
 import android.graphics.RectF
@@ -13,15 +12,12 @@ import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.lang.IllegalStateException
+import kotlin.math.roundToInt
 
-/**
- * @author wupanjie
- */
 internal object StickerUtils {
     private const val TAG = "StickerView"
     @JvmStatic
     fun saveImageToGallery(file: File, bmp: Bitmap): File {
-        requireNotNull(bmp) { "bmp should not be null" }
         try {
             val fos = FileOutputStream(file)
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos)
@@ -36,7 +32,7 @@ internal object StickerUtils {
 
     @JvmStatic
     fun notifySystemGallery(context: Context, file: File) {
-        require(!(file == null || !file.exists())) { "bmp should not be null" }
+        require(file.exists()) { "bmp should not be null" }
         try {
             MediaStore.Images.Media.insertImage(
                 context.contentResolver,
@@ -50,20 +46,14 @@ internal object StickerUtils {
         context.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)))
     }
 
-    fun trapToRect(array: FloatArray): RectF {
-        val r = RectF()
-        trapToRect(r, array)
-        return r
-    }
-
     @JvmStatic
     fun trapToRect(r: RectF, array: FloatArray) {
         r[Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY] =
             Float.NEGATIVE_INFINITY
         var i = 1
         while (i < array.size) {
-            val x = Math.round(array[i - 1] * 10) / 10f
-            val y = Math.round(array[i] * 10) / 10f
+            val x = (array[i - 1] * 10).roundToInt() / 10f
+            val y = (array[i] * 10).roundToInt() / 10f
             r.left = if (x < r.left) x else r.left
             r.top = if (y < r.top) y else r.top
             r.right = if (x > r.right) x else r.right
