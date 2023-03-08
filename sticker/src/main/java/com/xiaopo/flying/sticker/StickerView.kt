@@ -210,36 +210,37 @@ class StickerView @JvmOverloads constructor(
         }
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
+                Log.e("test", "$currentMode ACTION_DOWN")
                 if (!onTouchDown(event)) return false
             }
             MotionEvent.ACTION_POINTER_DOWN -> {
+                Log.e("test", "$currentMode ACTION_POINTER_DOWN")
                 if (currentMode != ICON) {
                     downMatrix.set(currentSticker!!.matrix)
 
                     oldDistance = calculateDistance(event)
                     oldRotation = calculateRotation(event)
                     midPoint = calculateMidPoint(event)
-                    if (currentSticker != null && isInStickerArea(
-                            currentSticker!!,
-                            event.getX(1),
-                            event.getY(1)
-                        ) && findCurrentIconTouched() == null
+                    if (currentSticker != null
+//                        && isInStickerArea(currentSticker!!, event.getX(1), event.getY(1))
+//                        && findCurrentIconTouched() == null
+                        // 두번째 터치가 스티커 내부가 아니여도 동작
                     ) {
                         currentMode = ZOOM_WITH_TWO_FINGER
                     }
                 }
             }
             MotionEvent.ACTION_MOVE -> {
-                Log.e("test", "onTouchEvent ACTION_MOVE")
+                Log.e("test", "$currentMode ACTION_MOVE")
                 handleCurrentMode(event)
                 invalidate()
             }
             MotionEvent.ACTION_UP -> {
-                Log.e("test", "onTouchEvent ACTION_UP")
+                Log.e("test", "$currentMode ACTION_UP")
                 onTouchUp(event)
             }
             MotionEvent.ACTION_POINTER_UP -> {
-                Log.e("test", "onTouchEvent ACTION_POINTER_UP")
+                Log.e("test", "$currentMode ACTION_POINTER_UP")
                 if (currentMode != ICON) {
                     if (currentMode == ZOOM_WITH_TWO_FINGER && currentSticker != null) {
                         if (onStickerOperationListener != null) {
